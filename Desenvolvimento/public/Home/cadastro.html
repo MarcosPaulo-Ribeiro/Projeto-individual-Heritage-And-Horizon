@@ -10,8 +10,8 @@
 
   <script src="./js/sessao.js"></script>
 
-  <link rel="stylesheet" href="./css/estilo.css" />
-  <link rel="icon" href="./assets/icon/faviconcarro.ico" />
+  <link rel="stylesheet" href="../css/estilo.css">
+  <link rel="icon" href="../assets/icon/faviconcarro.ico">
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
@@ -166,24 +166,24 @@
     return false;
   }
 
-/*  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
-
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
-        });
+  /*  function listar() {
+      fetch("/empresas/listar", {
+        method: "GET",
       })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }*/
+        .then(function (resposta) {
+          resposta.json().then((empresas) => {
+            empresas.forEach((empresa) => {
+              listaEmpresasCadastradas.push(empresa);
+  
+              console.log("listaEmpresasCadastradas")
+              console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+            });
+          });
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+    }*/
 
   function sumirMensagem() {
     cardErro.style.display = "none";
