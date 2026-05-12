@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Login | Projeto carros</title>
+    <title>Login | Heritage & Horizon</title>
 
-    <script src="./js/sessao.js"></script>
+    <script src="../js/sessao.js"></script>
 
     <link rel="stylesheet" href="../css/estilo.css">
     <link rel="icon" href="../assets/icon/faviconcarro.ico">
@@ -40,7 +40,7 @@
         </div>
         <div class="container">
             <div class="card card-login">
-                <h2>Olá de volta!</h2>
+                <h2>Voltemos a Corrida?</h2>
                 <div class="formulario">
                     <div class="campo">
                         <span>E-mail:</span>
@@ -54,7 +54,7 @@
                 </div>
 
                 <div id="div_aguardar" class="loading-div">
-                    <img src="./assets/circle-loading.gif" id="loading-gif">
+                    <img src="../assets/carregando.gif" id="loading-gif">
                 </div>
 
                 <div id="div_erros_login"></div>
@@ -121,8 +121,8 @@
                     sessionStorage.ID_USUARIO = json.id;
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
-                    }, 1000); // apenas para exibir o loading
+                        window.location = "../dashboard/Quizz.html";
+                    }, 2100); // apenas para exibir o loading
 
                 });
 

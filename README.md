@@ -1,4 +1,4 @@
-## 𝓟𝓸𝓻𝓼𝓬𝓱𝓮 𝓰𝓮𝓷𝓮𝓼𝒊𝓼 Heritage & Horizon
+## Heritage & Horizon
 Projeto interativo desenvolvido para o curso de Ciência da Computação na SPTech. O sistema combina um portal informativo sobre cultura automotiva com um Quiz dinâmico, onde o desempenho dos usuários é exibido em uma Dashboard em tempo real.
 
 ## 📜 Sobre o Projeto
@@ -11,7 +11,7 @@ O Desafio: Capturar as respostas do usuário, enviar para o banco de dados e tra
 Público-alvo: Entusiastas de carros e estudantes de CCO interessados em lógica de gamificação.
 
 Por que Heritage & Horizon(Legado e horizonte)?
-O projeto tem tema automotivo, porém os dois focos dele são duas Marcas, Porsche e Genesis.
+O projeto tem tema automotivo, porém os dois focos dele são duas Marcas, 𝓟𝓸𝓻𝓼𝓬𝓱𝓮 e 𝓰e𝓷𝓮𝓼𝒊𝓼.<br>
 Heritage(legado) simboliza os mais de 78 anos que a Porsche faz "errado" história na indústria.
 
 Horizon(Horizonte)simboliza a novidade Coreana, o início da Genesis forjada em 2015 e inovadora
@@ -58,7 +58,7 @@ Fluxo de Autenticação: Cadastro e Login otimizados para o perfil do usuário.
 
 Quiz Interativo: Sistema de perguntas com captura de pontuação.
 
-Dashboard Dinâmica: Os gráficos (Chart.js) não são estáticos; eles refletem o desempenho médio dos usuários, ranking de acertos e categorias de carros mais conhecidas.
+Dashboard Dinâmica: Os gráficos (Chart.js) não são estáticos; eles refletem o desempenho médio dos usuários, ranking de acertos e dúvida de usuários.
 
 ## 🔥✍ Histórico de Desenvolvimento
 Este projeto passou por uma fase de refatoração para eliminar o "código legado" de monitoramento de aquários, resultando em um back-end mais leve e funcional para a temática de carros.
