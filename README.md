@@ -61,7 +61,7 @@ Quiz Interativo: Sistema de perguntas com captura de pontuação.
 Dashboard Dinâmica: Os gráficos (Chart.js) não são estáticos; eles refletem o desempenho médio dos usuários, ranking de acertos e dúvida de usuários.
 
 ## 🔥✍ Histórico de Desenvolvimento
-Este projeto passou por uma fase de refatoração para eliminar o "código legado" de monitoramento de aquários, resultando em um back-end mais leve e funcional para a temática de carros.
+Este projeto passou por uma fase de refatoração encima do código de monitoramento de aquários do repositório original Web-Data-Viz, resultando em um back-end mais leve e funcional para a temática de carros.
 
 ## 👤© Autor
 Marcos Paulo - Estudante de CCO(1/8) na SPTech.
