@@ -20,7 +20,7 @@
         rel="stylesheet">
 </head>
 
-<body onload=" onloadEsconder(), validarSessao(),  atualizacaoPeriodica()">
+<body onload=" onloadEsconder(), validarSessao()">
 
     <div class="janela">
 
@@ -56,127 +56,256 @@
 
         </div>
 
-            <div class="dash">
-                <div id="pontuacaoEJogo">
-        <button id="btnIniciarQuiz" class="btninciar" onclick="iniciarQuiz()">INICIAR QUIZ</button>
+        <div class="dash">
+            <div id="pontuacaoEJogo">
+                <div id="container_selecao">
+                    <button class="btninciar" onclick="selecionarTema('porsche')">𝓟𝓸𝓻𝓼𝓬𝓱𝓮</button>
+                    <button class="btninciar" onclick="selecionarTema('genesis')">𝒢ℯ𝓃ℯ𝓈𝒾𝓈</button>
+                </div>
+                <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
+                    <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
+                        <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
+                        <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
+                    </div>
+                    <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
+                        <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
+                            <span id="spanPontuacaoFinal">***</span>
+                        </span>
+                        <span id="msgFinal" class="width-fit-content">***</span>
+                    </div>
+                </div>
 
-        <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
-            <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
-                <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
-                <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
-            </div>
-            <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
-                <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
-                    <span id="spanPontuacaoFinal">***</span>
-                </span>
-                <span id="msgFinal" class="width-fit-content">***</span>
+                <div id="jogo" class="width-fit-content flex-colunar border-secondary">
+
+                    <div id="infoQuestao" class="padding-8">
+                        <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span
+                                id="qtdQuestoes"></span>
+                            questões.</span>
+                    </div>
+
+                    <div id="perguntaDaQuestaoAtual" class="padding-8">
+                        <span id="spanQuestaoExibida" class="text-bold"></span>
+                    </div>
+
+                    <div id="infoAlternativas" class="padding-8">
+                        <span><em>Escolha uma opção dentre as abaixo:</em></span>
+                    </div>
+
+                    <div id="opcoes" class="flex-colunar padding-8">
+                        <span>
+                            <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
+                            <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+                        </span>
+                        <span>
+                            <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                            <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+                        </span>
+                        <span>
+                            <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                            <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+                        </span>
+                        <span>
+                            <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                            <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+                        </span>
+                        <span>
+                            <input type="radio" id="quintaOpcao" name="option" class="radio" value="alternativaE" />
+                            <label for="quintaOpcao" class="option" id="labelOpcaoCinco"></label>
+                        </span>
+                    </div>
+
+                    <div id="botoes" class="flex-colunar padding-8">
+                        <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
+                        <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
+                        <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
+                        <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+                    </div>
+
+                </div>
             </div>
         </div>
-
-        <div id="jogo" class="width-fit-content flex-colunar border-secondary">
-
-            <div id="infoQuestao" class="padding-8">
-                <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
-                    questões.</span>
-            </div>
-
-            <div id="perguntaDaQuestaoAtual" class="padding-8">
-                <span id="spanQuestaoExibida" class="text-bold"></span>
-            </div>
-
-            <div id="infoAlternativas" class="padding-8">
-                <span><em>Escolha uma opção dentre as abaixo:</em></span>
-            </div>
-
-            <div id="opcoes" class="flex-colunar padding-8">
-                <span>
-                    <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
-                    <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
-                </span>
-                <span>
-                    <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
-                    <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
-                </span>
-                <span>
-                    <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
-                    <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
-                </span>
-                <span>
-                    <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
-                    <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
-                </span>
-            </div>
-
-            <div id="botoes" class="flex-colunar padding-8">
-                <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
-                <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
-                <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
-                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
-            </div>
-
-        </div>
-    </div>
-            </div>
 
 </html>
 
 <script>
-    const listaDeQuestoes = [
+
+    function selecionarTema(marca) {
+        if (marca == "porsche") {
+            listaDeQuestoesAtuais = questoesPorsche
+        } else if (marca == "genesis") {
+            listaDeQuestoesAtuais = questoesGenesis
+        }
+        quantidadeDeQuestoes = listaDeQuestoesAtuais.length;
+        iniciarQuiz()
+    }
+
+    const questoesPorsche = [
+
+
 
         {
-        pergunta: "Qual é o modelo mais icônico da Porsche, lançado em 1963?",
-        alternativaA: "911",
-        alternativaB: "Cayenne",
-        alternativaC: "Panamera",
-        alternativaD: "Boxster",
-        alternativaCorreta: "alternativaA"
-    },
+            pergunta: "Qual é o modelo mais icônico da Porsche, lançado em 1963?",
+            alternativaA: "911",
+            alternativaB: "Cayenne",
+            alternativaC: "Panamera",
+            alternativaD: "Boxster",
+            alternativaE: "Taycan",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            pergunta: "Qual é a Variante com a melhor velocidade em linha reta?",
+            alternativaA: "GTS",
+            alternativaB: "Turbo S",
+            alternativaC: "GT3 RS",
+            alternativaD: "4S",
+            alternativaE: "Turbo",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "Qual é o modelo mais vendido da Porsche?",
+            alternativaA: "911",
+            alternativaB: "Cayenne",
+            alternativaC: "Panamera",
+            alternativaD: "718",
+            alternativaE: "Macan",
+            alternativaCorreta: "alternativaE"
+        },
+        {
+            pergunta: "Qual é montadora é dona da Porsche?",
+            alternativaA: "Audi",
+            alternativaB: "BMW",
+            alternativaC: "Land Rover",
+            alternativaD: "Volkswagen",
+            alternativaE: "Honda",
+            alternativaCorreta: "alternativaD"
+        },
+        {
+            pergunta: "Qual desses carros usa o mesmo motor de uma Porsche Cayenne?",
+            alternativaA: "BMW X5",
+            alternativaB: "Land Rover Defender",
+            alternativaC: "Mercedes-Benz GLS",
+            alternativaD: "Cadillac Escalade",
+            alternativaE: "Bentley Bentayga",
+            alternativaCorreta: "alternativaE"
+        },
+        {
+            pergunta: "Qual carro introduziu a revolucionária suspensão Active Ride?",
+            alternativaA: "Panamera",
+            alternativaB: "Taycan",
+            alternativaC: "Cayenne",
+            alternativaD: "Macan",
+            alternativaE: "Discovery",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            pergunta: "Qual modelo salvou a Porsche de falir?",
+            alternativaA: "911",
+            alternativaB: "718",
+            alternativaC: "Taycan",
+            alternativaD: "Cayenne",
+            alternativaE: "Macan Eletric",
+            alternativaCorreta: "alternativaD"
+        },
+        {
+            pergunta: "qual foi o maior feito de rebocamento que a Porsche Cayenne S conseguiu, alcançando Recorde mundial no Guiness?",
+            alternativaA: "20 Toneladas(trailer comercial)",
+            alternativaB: "285 toneladas(Avião)",
+            alternativaC: "120 toneladas (Ônibus espacial)",
+            alternativaD: "50 toneladas(Iate de luxo)",
+            alternativaE: "240 toneladas (Balsa de passageiros)",
+            alternativaCorreta: "alternativaB"
+        }
 
-    {
-         pergunta: "Qual é a Variante com a melhor velocidade em linha reta?",
-        alternativaA: "GTS",
-        alternativaB: "Turbo S",
-        alternativaC: "GT3 RS",
-        alternativaD: "4S",
-        alternativaCorreta: "alternativaB"
-    },
 
-    {
-         pergunta: "Qual é o modelo mais vendido da Porsche?",
-        alternativaA: "911",
-        alternativaB: "Cayenne",
-        alternativaC: "Panamera",
-        alternativaD: "Macan",
-        alternativaCorreta: "alternativaD"
-    },
+    ];
+    const questoesGenesis = [
 
-    {
-         pergunta: "Qual é montadora é dona da Porsche?",
-        alternativaA: "Audi",
-        alternativaB: "BMW",
-        alternativaC: "Land Rover",
-        alternativaD: "Volkswagen",
-        alternativaCorreta: "alternativaD"
-    },
+        {
+            pergunta: "A Genesis é a divisão de luxo de qual montadora?",
+            alternativaA: "Toyota",
+            alternativaB: "Hyundai",
+            alternativaC: "Honda",
+            alternativaD: "Chevrolet",
+            alternativaE: "Polestar",
+            alternativaCorreta: "alternativaB"
+        },
+        {
 
-    {
-         pergunta: "Qual desses carros usa o mesmo motor de uma Porsche Cayenne??",
-        alternativaA: "Bentley Bentayga",
-        alternativaB: "Land Rover Defender",
-        alternativaC: "Mercedes-Benz GLS",
-        alternativaD: "Cadillac Escalade",
-        alternativaCorreta: "alternativaA"
-    }
-];
+            pergunta: "Em que ano nasceu a Montadora Genesis?",
+            alternativaA: "1999",
+            alternativaB: "não sei",
+            alternativaC: "2010",
+            alternativaD: "1940",
+            alternativaE: "2015",
+            alternativaCorreta: "alternativaE"
+        },
+        {
+
+            pergunta: "Qual é o nome da variante esportiva da Genesis?",
+            alternativaA: "M Competition",
+            alternativaB: "AMG",
+            alternativaC: "Black Badge",
+            alternativaD: "Magma",
+            alternativaE: "Type R",
+            alternativaCorreta: "alternativaD"
+        },
+        {
+            pergunta: "Qual é o atual modelo Carro-chefe da Genesis?",
+            alternativaA: "GV80",
+            alternativaB: "G90",
+            alternativaC: "GV60 Magma",
+            alternativaD: "X Gran Berlinetta",
+            alternativaE: "Não tenho a mínima ideia, essa marca realmente existe?",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "Qual é a proposta da Genesis?",
+            alternativaA: "Luxo absoluto e exclusividade",
+            alternativaB: "perfomance e som viceral",
+            alternativaC: "silêncio e custo-benefício",
+            alternativaD: "capacidade Off-road",
+            alternativaE: "carros compactos e divertidos",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            pergunta: "Qual é a filosofia de Design da Genesis?",
+            alternativaA: "Grades luxuosas e imponentes",
+            alternativaB: "Entradas de ar agressivas",
+            alternativaC: "aerofólios retráteis",
+            alternativaD: "Ornamento de Capô",
+            alternativaE: "Duas Linhas",
+            alternativaCorreta: "alternativaE"
+        },
+        {
+            pergunta: "A Genesis é conhecida por ter uma equipe com portifólio diverso, incluindo ex-funcionários da:",
+            alternativaA: "BMW, Porsche, Lamborghini, Mercedes-Benz, Bentley",
+            alternativaB: "Ferrari, Tesla, Ford, Honda, Mazda",
+            alternativaC: "FIAT, Suzuki, Mclaren, Volvo, Chevrolet",
+            alternativaD: "Peugeout, Subaru, Dodge, Alfa Romeo, Polestar",
+            alternativaE: "Lucid Motors, Morgan Motors, RAM, Maserati, Rivian",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            pergunta: "O sedã Genesis G90 traz qual recurso inusitado está embutido para ocupantes do banco traseiro?",
+            alternativaA: "Geladeira para Bebidas",
+            alternativaB: "medidor de pressão arterial acoplado ao banco",
+            alternativaC: "massageador térmico para as palmas das mãos",
+            alternativaD: "inalador de oxigênio puro",
+            alternativaE: "esterilizador por luz UV-C para celulares e objetos",
+            alternativaCorreta: "alternativaE"
+        }
+    ];
+
+    let listaDeQuestoesAtuais = [];
 
 
     // variáveis globais    
-    let numeroDaQuestaoAtual = 0
-    let pontuacaoFinal = 0
-    let tentativaIncorreta = 0
-    let certas = 0
-    let erradas = 0
-    let quantidadeDeQuestoes = listaDeQuestoes.length
+    let numeroDaQuestaoAtual = 0;
+    let pontuacaoFinal = 0;
+    let tentativaIncorreta = 0;
+    let certas = 0;
+    let erradas = 0;
+    let quantidadeDeQuestoes;
     // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
     function onloadEsconder() {
@@ -187,7 +316,7 @@
     function iniciarQuiz() {
         document.getElementById('pontuacao').style.display = "flex"
         document.getElementById('jogo').style.display = "flex"
-        document.getElementById('btnIniciarQuiz').style.display = "none"
+        document.getElementById('container_selecao').style.display = "none"
 
         document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
 
@@ -201,7 +330,7 @@
 
     function preencherHTMLcomQuestaoAtual(index) {
         habilitarAlternativas(true)
-        const questaoAtual = listaDeQuestoes[index]
+        const questaoAtual = listaDeQuestoesAtuais[index]
         numeroDaQuestaoAtual = index
         console.log("questaoAtual")
         console.log(questaoAtual)
@@ -211,6 +340,7 @@
         document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
         document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
         document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+        document.getElementById("labelOpcaoCinco").innerHTML = questaoAtual.alternativaE;
     }
 
     function submeter() {
@@ -255,7 +385,7 @@
         if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
         } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
-            alert("Atenção... a próxima é a ultima questão!")
+            alert("a próxima é a questão mais difícil!")
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
         } else {
             finalizarJogo()
@@ -269,7 +399,7 @@
     }
 
     function checarResposta() {
-        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
+        const questaoAtual = listaDeQuestoesAtuais[numeroDaQuestaoAtual] // questão atual 
         const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
 
         const options = document.getElementsByName("option"); // recupera alternativas no html
@@ -337,14 +467,14 @@
             classComCoresParaMensagemFinal = "text-success-with-bg"
         }
 
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
+        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
 
 
         document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 
+        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
         document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
 
-        document.getElementById('jogo').classList.add("text-new-gray") 
+        document.getElementById('jogo').classList.add("text-new-gray")
 
         btnProx.disabled = true
         btnSubmeter.disabled = true
@@ -352,4 +482,37 @@
         btnTentarNovamente.disabled = false
 
     }
-    </script>
+
+    function finalizarJogo() {
+    // VEM PRO BANCO DE DADOS DO PAPAI VEM
+    const idUsuario = sessionStorage.ID_USUARIO; 
+
+    const dadosDoQuiz = {
+        acertosServer: certas,
+        errosServer: erradas,
+        marcaServer: listaDeQuestoesAtuais == questoesPorsche ? 'porsche' : 'genesis',
+        idUsuarioServer: idUsuario
+    };
+
+    fetch("/quiz/salvar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(dadosDoQuiz)
+    })
+    .then(function (resposta) {
+        if (resposta.ok) {
+            console.log("Resultado do quiz salvo com sucesso no banco!");
+        } else {
+            console.error("Erro ao tentar salvar o resultado do quiz no servidor.");
+        }
+    })
+    .catch(function (erro) {
+        console.log("Houve um erro na requisição fetch: ", erro);
+    });
+
+    // continuar outro dia
+    // let textoParaMensagemFinal = null
+}
+</script>
