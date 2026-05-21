@@ -59,7 +59,7 @@
         <div class="dash">
             <div id="pontuacaoEJogo">
                 <div id="container_selecao">
-                    <button class="btninciar" onclick="selecionarTema('porsche')">𝓟𝓸𝓻𝓼𝓬𝓱𝓮</button>
+                    <button class="btninciar" onclick="selecionarTema('porsche')">𝓟𝓸𝓻𝓼𝓬𝓱𝓮</button><!--botões para selecionar o tema de cada Marca-->
                     <button class="btninciar" onclick="selecionarTema('genesis')">𝒢ℯ𝓃ℯ𝓈𝒾𝓈</button>
                 </div>
                 <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
@@ -110,7 +110,7 @@
                         </span>
                         <span>
                             <input type="radio" id="quintaOpcao" name="option" class="radio" value="alternativaE" />
-                            <label for="quintaOpcao" class="option" id="labelOpcaoCinco"></label>
+                            <label for="quintaOpcao" class="option" id="labelOpcaoCinco"></label> <!--alternativa Extra-->
                         </span>
                     </div>
 
@@ -128,7 +128,7 @@
 </html>
 
 <script>
-
+    // botão de seleção de tema atribuindo um Quiz Diferente para o usuário
     function selecionarTema(marca) {
         if (marca == "porsche") {
             listaDeQuestoesAtuais = questoesPorsche
@@ -139,6 +139,7 @@
         iniciarQuiz()
     }
 
+    // Perguntas Porsche
     const questoesPorsche = [
 
 
@@ -217,7 +218,7 @@
         }
 
 
-    ];
+    ];// Perguntas Genesis
     const questoesGenesis = [
 
         {
@@ -340,6 +341,7 @@
         document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
         document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
         document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+        // mais uma alternativa para ficar 5 opções
         document.getElementById("labelOpcaoCinco").innerHTML = questaoAtual.alternativaE;
     }
 
@@ -384,8 +386,9 @@
 
         if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+            // mudei aqui, após o término do Quiz, a página congelava, mudança feita logo após adicionar o Fetch
         } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
-            alert("a próxima é a questão mais difícil!")
+            alert("a próxima é a questão mais difícil!")// mudança na frase final
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
         } else {
             finalizarJogo()
@@ -455,15 +458,18 @@
         const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
 
         if (porcentagemFinalDeAcertos <= 0.3) {
-            textoParaMensagemFinal = "Parece que você não estudou..."
+            textoParaMensagemFinal = "Ei, não fica pra baixo, ninguém é obrigado a saber tanto sobre carros nichados como esses"
             classComCoresParaMensagemFinal = "text-danger-with-bg"
         }
-        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
-            textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
+        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.7) {
+            textoParaMensagemFinal = "Foi uma ótima tentativa, porém algumas questões estavam difíceis mesmo!"
+            classComCoresParaMensagemFinal = "text-warning-with-bg"
+        } else if (porcentagemFinalDeAcertos > 0,7 && porcentagemFinalDeAcertos < 1) {
+            textoParaMensagemFinal = "Ei, boa, uma pontuação Semi-Perfeita!"
             classComCoresParaMensagemFinal = "text-warning-with-bg"
         }
-        else if (porcentagemFinalDeAcertos >= 0.9) {
-            textoParaMensagemFinal = "Uau, parabéns!"
+        else if (porcentagemFinalDeAcertos >= 1) {
+            textoParaMensagemFinal = `Uau, parabéns, você acertou Todas, e é um Mestre da ${marca}!`
             classComCoresParaMensagemFinal = "text-success-with-bg"
         }
 
@@ -484,35 +490,37 @@
     }
 
     function finalizarJogo() {
-    // VEM PRO BANCO DE DADOS DO PAPAI VEM
-    const idUsuario = sessionStorage.ID_USUARIO; 
+        // VEM PRO BANCO DE DADOS DO PAPAI VEM
 
-    const dadosDoQuiz = {
-        acertosServer: certas,
-        errosServer: erradas,
-        marcaServer: listaDeQuestoesAtuais == questoesPorsche ? 'porsche' : 'genesis',
-        idUsuarioServer: idUsuario
-    };
+        // pegando o id do usuário atualmente logado
+        const idUsuario = sessionStorage.ID_USUARIO;
 
-    fetch("/quiz/salvar", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(dadosDoQuiz)
-    })
-    .then(function (resposta) {
-        if (resposta.ok) {
-            console.log("Resultado do quiz salvo com sucesso no banco!");
-        } else {
-            console.error("Erro ao tentar salvar o resultado do quiz no servidor.");
-        }
-    })
-    .catch(function (erro) {
-        console.log("Houve um erro na requisição fetch: ", erro);
-    });
+        // dados que serão enviados para o Backend
+        const dadosDoQuiz = {
+            acertosServer: certas, // número de perguntas acertadas
+            errosServer: erradas, // número de perguntas erradas
+            marcaServer: listaDeQuestoesAtuais == questoesPorsche ? 'porsche' : 'genesis', // vê se o Quiz é da Porsche, se não for, automaticamente Genesis
+            idUsuarioServer: idUsuario // Envia o ID previamente obtido por sessionStorage
+        };
 
-    // continuar outro dia
-    // let textoParaMensagemFinal = null
-}
+        // Fetch 
+        // app.use("/quiz", quizRouter);
+        fetch("/quiz/salvar", {
+            method: "POST", // define como POST para o Routes
+            headers: {
+                "Content-Type": "application/json" // informa que os dados são um JSON
+            },
+            body: JSON.stringify(dadosDoQuiz) // Transforma os dados em JSON
+        })
+            .then(function (resposta) { // quando o servidor for conectado, falará uma dessas coisas, caso não conecte, vá para o .catch
+                if (resposta.ok) {
+                    console.log("Resultado do quiz salvo com sucesso no banco!"); // me diz se deu certo
+                } else {
+                    console.error("Erro ao tentar salvar o resultado do quiz no servidor."); // deu errado
+                }
+            })
+            .catch(function (erro) {
+                console.log("Houve um erro na requisição fetch: ", erro); // aqui é caso o erro não seja por parte do HTML/JavaScript
+            });
+    }
 </script>

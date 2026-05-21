@@ -1,14 +1,13 @@
 var quizModel = require("../models/quizModel");
 
 function salvarResultado(req, res) {
-    // Capturando os valores que vêm do corpo da requisição (body)
+    // Capturando os dados enviados pelo frontend no body da requisição
     var acertos = req.body.acertosServer;
     var erros = req.body.errosServer;
     var tema = req.body.marcaServer;
     var fkUsuario = req.body.idUsuarioServer;
 
-    // Validação básica para não vier dados incompletos, embora acho difícil acontecer. . .
-    // deixa pra lá, sou eu que estou fazendo, ainda não tenho tamanha confiança em mim
+    // Validação básica para não vier dados incompletos, embora acho difícil acontecer pois em teoria esses dados só vem quando o Quiz Termina. . .
     if (acertos == undefined || erros == undefined || tema == undefined || fkUsuario == undefined) {
         res.status(400).send("Seus dados estão undefined! Verifique o Controller.");
     } else {
@@ -18,13 +17,13 @@ function salvarResultado(req, res) {
                 res.json(resultado);
             }).catch(function (erro) {
                 console.log(erro);
-                console.log("\nHouve um erro ao salvar o resultado! Erro: ", erro.sqlMessage);
+                console.log("\nHouve um erro ao salvar o resultado! Erro: ", erro.sqlMessage); // Mensagem de erro caso ocorre algum erro
                 res.status(500).json(erro.sqlMessage);
             });
     }
 }
 
-// Exportando a função para o Controller poder usar o Quiz
+// Exportando a função para a rota ser utilizável
 module.exports = {
     salvarResultado
 };
