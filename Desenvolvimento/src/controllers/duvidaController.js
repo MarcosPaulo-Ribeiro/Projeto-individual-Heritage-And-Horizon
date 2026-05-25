@@ -1,7 +1,10 @@
-var avisoModel = require("../models/avisoModel");
+var duvidaModel = require("../models/duvidaModel");
+
+// trocado de avisos para Duvidas para acomodar o BD
+// a Similaridade torna a adaptação muito mais fácil
 
 function listar(req, res) {
-    avisoModel.listar().then(function (resultado) {
+    duvidaModel.listar().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -17,7 +20,7 @@ function listar(req, res) {
 function listarPorUsuario(req, res) {
     var idUsuario = req.params.idUsuario;
 
-    avisoModel.listarPorUsuario(idUsuario)
+    duvidaModel.listarPorUsuario(idUsuario)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -39,10 +42,10 @@ function listarPorUsuario(req, res) {
         );
 }
 
-function pesquisarDescricao(req, res) {
-    var descricao = req.params.descricao;
+function pesquisarPergunta(req, res) {
+    var pergunta = req.params.pergunta;
 
-    avisoModel.pesquisarDescricao(descricao)
+    duvidaModel.pesquisarPergunta(pergunta)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -61,18 +64,30 @@ function pesquisarDescricao(req, res) {
 }
 
 function publicar(req, res) {
+
+    // linha para teste
+    console.log("--- DADOS RECEBIDOS NO CONTROLLER ---");
+    console.log("Título:", req.body.titulo);
+    console.log("Pergunta:", req.body.pergunta);
+    console.log("Tema:", req.body.marca); 
+    console.log("ID Usuário:", req.params.idUsuario);
+    console.log("-------------------------------------");
+
     var titulo = req.body.titulo;
-    var descricao = req.body.descricao;
+    var pergunta = req.body.pergunta; // mudando para Pergunta
+    var temaSelecionado = req.body.marca; // adicionando a variável da marca
     var idUsuario = req.params.idUsuario;
 
     if (titulo == undefined) {
         res.status(400).send("O título está indefinido!");
-    } else if (descricao == undefined) {
-        res.status(400).send("A descrição está indefinido!");
+    } else if (pergunta == undefined) {
+        res.status(400).send("A pergunta está indefinida!");
+    } else if (temaSelecionado == undefined){
+        res.status(400).send("O tema está indefinido!") // adicionando erro para a ,arca(caso aconteça)
     } else if (idUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     } else {
-        avisoModel.publicar(titulo, descricao, idUsuario)
+        duvidaModel.publicar(titulo, pergunta, temaSelecionado, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -89,10 +104,10 @@ function publicar(req, res) {
 }
 
 function editar(req, res) {
-    var novaDescricao = req.body.descricao;
-    var idAviso = req.params.idAviso;
+    var novaPergunta = req.body.pergunta; //novaPergunta agora
+    var idDuvida = req.params.idDuvida; // idDuvida agora
 
-    avisoModel.editar(novaDescricao, idAviso)
+    duvidaModel.editar(novaPergunta, idDuvida)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -109,9 +124,9 @@ function editar(req, res) {
 }
 
 function deletar(req, res) {
-    var idAviso = req.params.idAviso;
+    var idDuvida = req.params.idDuvida;
 
-    avisoModel.deletar(idAviso)
+    duvidaModel.deletar(idDuvida)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -126,11 +141,49 @@ function deletar(req, res) {
         );
 }
 
+// function adicionada para acomodar a Dashboard
+function estatisticas(req, res) {
+    console.log("ACESSEI O DUVIDA CONTROLLER - FUNÇÃO estatisticas");
+
+    duvidaModel.estatisticas()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                // Se o banco estiver vazio, devolve um array vazio com status 204 (No Content)
+                res.status(204).send("Nenhum resultado encontrado!");
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("\nHouve um erro ao buscar as estatísticas! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function leaderboard(req, res) {
+    console.log("ACESSEI O DUVIDA CONTROLLER - FUNÇÃO leaderboard");
+
+    duvidaModel.leaderboard()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!");
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("\nHouve um erro ao buscar o leaderboard! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 module.exports = {
     listar,
     listarPorUsuario,
-    pesquisarDescricao,
+    pesquisarPergunta, // mudado de pesquisarDescricao para pesquisarPergunta
     publicar,
     editar,
-    deletar
+    deletar,
+    estatisticas, // adicionado para a Dashboard
+    leaderboard // adicionado para a Dashboard
 }

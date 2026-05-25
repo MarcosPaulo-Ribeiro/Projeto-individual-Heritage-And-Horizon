@@ -61,7 +61,7 @@
 
             <div class="avisos">
                 <div class="container">
-                    <h1>Editar um aviso</h1>
+                    <h1>Editar uma dúvida</h1>
                     <div class="div-form">
                         <label>
                             ID:
@@ -82,9 +82,9 @@
                         </label>
                         <br>
                         <label>
-                            Descrição (máximo de 250 caracteres):
+                            Pergunta (máximo de 300 caracteres):
                             <br>
-                            <textarea id="textarea_descricao" maxlength="250" rows="5"></textarea>
+                            <textarea id="textarea_pergunta" maxlength="300" rows="5"></textarea>
                         </label>
                         <br>
                         <button onclick="editar()">Editar</button>
@@ -104,13 +104,13 @@
     }
 
     function editar() {
-        fetch(`/avisos/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
+        fetch(`/duvida/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                descricao: textarea_descricao.value
+                pergunta: textarea_pergunta.value
             })
         }).then(function (resposta) {
 

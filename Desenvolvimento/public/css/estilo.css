@@ -111,9 +111,21 @@ body {
   justify-content: center;
 }
 
-.logo-container {
-  min-width: 250px;
-  height: 200px;
+.logo-porsche {
+  max-height: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.logo-genesis {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  min-height: 150px;
+  min-width: 500px;
+  max-height: 200px;
+  max-width: 153px;
+  /* NÃO PERGUNTE, FUNCIONOU, ENTÃO TÁ FUNCIONADO */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

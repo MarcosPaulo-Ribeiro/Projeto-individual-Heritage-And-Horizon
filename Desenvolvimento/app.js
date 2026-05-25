@@ -17,7 +17,8 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
-var avisosRouter = require("./src/routes/avisos");
+var duvidaRouter = require("./src/routes/duvida"); // trocado de avisos para duvida
+
 // var medidasRouter = require("./src/routes/medidas"); Não é necessário, não há medidas
 // var aquariosRouter = require("./src/routes/aquarios"); não é necessário, não se trata de aquários mais
 // var empresasRouter = require("./src/routes/empresas"); não há empresas nesse projeto 
@@ -33,7 +34,7 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
-app.use("/avisos", avisosRouter);
+app.use("/duvida", duvidaRouter); // trocado de avisos para duvida
 // app.use("/medidas", medidasRouter);
 // app.use("/aquarios", aquariosRouter);
 // app.use("/empresas", empresasRouter);
@@ -59,12 +60,12 @@ app.listen(PORTA_APP, function () {
     \tSe .:producao:. você está se conectando ao banco remoto. \n\n
     \t\tPara alterar o ambiente, comente ou descomente as linhas 1 ou 2 no arquivo 'app.js'\n\n`);
     console.log(`
- #     # ####### ######  ### #######    #     #####  #######       #     # ####### ######  ### ####### ####### #     # 
- #     # #       #     #  #     #      # #   #     # #             #     # #     # #     #  #       #  #     # ##    # 
- #     # #       #     #  #     #     #   #  #       #             #     # #     # #     #  #      #   #     # # #   # 
- ####### #####   ######   #     #    #     # #  #### #####   ##### ####### #     # ######   #     #    #     # #  #  # 
- #     # #       #   #    #     #    ####### #     # #             #     # #     # #   #    #    #     #     # #   # # 
- #     # #       #    #   #     #    #     # #     # #             #     # #     # #    #   #   #      #     # #    ## 
- #     # ####### #     # ###    #    #     #  #####  #######       #     # ####### #     # ### ####### ####### #     # 
-                                                                                                                       `)
+ #     # ####### ######  ### #######    #     #####  #######         #     # ####### ######  ### ####### ####### #     # 
+ #     # #       #     #  #     #      # #   #     # #               #     # #     # #     #  #       #  #     # ##    # 
+ #     # #       #     #  #     #     #   #  #       #               #     # #     # #     #  #      #   #     # # #   # 
+ ####### #####   ######   #     #    #     # #  #### #####    #####  ####### #     # ######   #     #    #     # #  #  # 
+ #     # #       #   #    #     #    ####### #     # #               #     # #     # #   #    #    #     #     # #   # # 
+ #     # #       #    #   #     #    #     # #     # #               #     # #     # #    #   #   #      #     # #    ## 
+ #     # ####### #     # ###    #    #     #  #####  #######         #     # ####### #     # ### ####### ####### #     # 
+`)
 });

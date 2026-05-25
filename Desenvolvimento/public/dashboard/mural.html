@@ -2,7 +2,7 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/icon/Ambas-16x16.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +20,8 @@
 </head>
 
 <body onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
+
+    <div id="div_erros_login" style="display: none;"></div>
 
     <div class="janela">
 
@@ -56,12 +58,12 @@
 
         <div class="dash-right">
 
-
+            <!-- TUDO QUE TINHA idAvisos eu mudei para "idDuvida -- Fiz o mesmo para descricao, que virou pergunta "-->
             <div class="avisos">
                 <div id="alerta">
                 </div>
                 <div class="container">
-                    <h1>Publicar um aviso</h1>
+                    <h1>Publicar uma Dúvida</h1>
                     <div class="div-form">
                         <form id="form_postagem" method="post" onsubmit="return publicar()">
                             <label>
@@ -72,16 +74,32 @@
                             <br>
                             <br>
                             <label>
-                                Descrição (máximo de 250 caracteres):
+                                Pergunta (máximo de 300 caracteres):
                                 <br>
-                                <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
+                                <textarea name="pergunta" id="textarea_pergunta" maxlength="300" rows="5"></textarea>
+                                <!--mudei de desc para pergunta-->
                             </label>
                             <br>
                             <br>
+                            <label><!-- novo Input Radio para pegar a Marca selecionada-->
+                                <label>
+                                    Selecione a marca que está com Dúvida:
+                                    <br><br>
+                                    <div class="div-radios">
+                                        <input type="radio" id="radio_porsche" name="marca_radio" value="porsche"
+                                            checked>
+                                        <label for="radio_porsche">Porsche</label>
+
+                                        <input type="radio" id="radio_genesis" name="marca_radio" value="genesis" style="margin-left: 20px;"> <!--afastando um pouco-->
+                                        <label for="radio_genesis">Genesis</label>
+                                    </div>
+                                </label>
+
+                            </label>
                             <button>Enviar</button>
                         </form>
                     </div>
-                    <h1>Mural de Avisos</h1>
+                    <h1>Mural de Dúvidas</h1>
                     <div class="div-results">
                         <div id="feed_container" class="feed-container">
                         </div>
@@ -99,7 +117,8 @@
 </html>
 
 <script>
-    
+    // já que a estrutura desse HTML foi feita para isso, não houve muitas mudanças
+
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     function limparFormulario() {
@@ -108,13 +127,16 @@
 
     function publicar() {
         var idUsuario = sessionStorage.ID_USUARIO;
+        var temaSelecionado = document.querySelector('input[name="marca_radio"]:checked').value; // variável do tema Porsche/Genesis
 
         var corpo = {
             titulo: form_postagem.titulo.value,
-            descricao: form_postagem.descricao.value
+            pergunta: form_postagem.pergunta.value, // trocado para pergunta
+            marca: temaSelecionado // adição do campo Tema ao mural de dúvidas
         }
 
-        fetch(`/avisos/publicar/${idUsuario}`, {
+        // trocado de /avisos/publicar para /duvida/publicar
+        fetch(`/duvida/publicar/${idUsuario}`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
@@ -143,17 +165,18 @@
 
     }
 
-    function editar(idAviso) {
-        sessionStorage.ID_POSTAGEM_EDITANDO = idAviso;
-        console.log("cliquei em editar - " + idAviso);
-        window.alert("Você será redirecionado à página de edição do aviso de id número: " + idAviso);
+    function editar(idDuvida) {
+        sessionStorage.ID_POSTAGEM_EDITANDO = idDuvida;
+        console.log("cliquei em editar - " + idDuvida);
+        window.alert("Você será redirecionado à página de edição do Dúvidas de id número: " + idDuvida);
         window.location = "/dashboard/edicao-aviso.html"
 
     }
 
-    function deletar(idAviso) {
-        console.log("Criar função de apagar post escolhido - ID" + idAviso);
-        fetch(`/avisos/deletar/${idAviso}`, {
+    function deletar(idDuvida) {
+        console.log("Criar função de apagar post escolhido - ID" + idDuvida);
+        // trocado de /avisos/deletar para /duvida/deletar/
+        fetch(`/duvida/deletar/${idDuvida}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -174,7 +197,8 @@
     }
 
     function atualizarFeed() {
-        fetch("/avisos/listar").then(function (resposta) {
+        // trocado de /avisos/deletar para /duvida/deletar
+        fetch("/duvida/listar").then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
                     var feed = document.getElementById("feed_container");
@@ -197,39 +221,39 @@
                         var spanID = document.createElement("span");
                         var spanTitulo = document.createElement("span");
                         var spanNome = document.createElement("span");
-                        var divDescricao = document.createElement("div");
+                        var divPergunta = document.createElement("div"); // mudei para pergunta
                         var divButtons = document.createElement("div");
                         var btnEditar = document.createElement("button");
                         var btnDeletar = document.createElement("button");
 
 
-                        spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
+                        spanID.innerHTML = "ID: <b>" + publicacao.idDuvida + "</b>";
                         spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
                         spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
-                        divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
+                        divPergunta.innerHTML = "Pergunta: <b>" + publicacao.pergunta + "</b>"; // mudei para pergunta
                         btnEditar.innerHTML = "Editar";
                         btnDeletar.innerHTML = "Deletar";
 
                         divPublicacao.className = "publicacao";
-                        spanTitulo.id = "inputNumero" + publicacao.idAviso;
+                        spanTitulo.id = "inputNumero" + publicacao.idDuvida;
                         spanNome.className = "publicacao-nome";
                         spanTitulo.className = "publicacao-titulo";
-                        divDescricao.className = "publicacao-descricao";
+                        divPergunta.className = "publicacao-pergunta"; // mudei para pergunta
 
                         divButtons.className = "div-buttons"
 
                         btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idAviso;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
+                        btnEditar.id = "btnEditar" + publicacao.idDuvida;
+                        btnEditar.setAttribute("onclick", `editar(${publicacao.idDuvida})`);
 
                         btnDeletar.className = "publicacao-btn-editar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idAviso;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
+                        btnDeletar.id = "btnDeletar" + publicacao.idDuvida;
+                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idDuvida})`);
 
                         divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);
                         divPublicacao.appendChild(spanTitulo);
-                        divPublicacao.appendChild(divDescricao);
+                        divPublicacao.appendChild(divPergunta);
                         divPublicacao.appendChild(divButtons);
                         divButtons.appendChild(btnEditar);
                         divButtons.appendChild(btnDeletar);

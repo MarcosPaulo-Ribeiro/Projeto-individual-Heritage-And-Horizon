@@ -25,17 +25,7 @@ body {
   align-items: center;
 }
 
-.dash-right .avisos .container .div-form {
-  width: 95%;
-}
 
-.dash-right .avisos .container .div-form #form_postagem {
-  width: 95%;
-}
-
-.dash-right .avisos .div-form label {
-  width: 95%;
-}
 
 .dash-right .avisos .div-form input {
   width: 95%;
@@ -62,6 +52,18 @@ body {
   width: 120px;
 } */
 
+.dash-right .avisos .container .div-form {
+  width: 95%;
+}
+
+.dash-right .avisos .container .div-form #form_postagem {
+  width: 95%;
+}
+
+.dash-right .avisos .div-form label {
+  width: 95%;
+}
+
 .publicacao-btn-editar {
   cursor: pointer;
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -71,7 +73,7 @@ body {
   font-size: 14px;
   padding: 5px 8px;
   color: white;
-  background-color: #e6005a;
+  background-color: #CC0000;
   width: 80px;
 }
 
@@ -82,7 +84,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  border-bottom: 3px solid #e6005a;
+  border-bottom: 3px solid #CC0000;
   padding: 20px;
 }
 
@@ -280,7 +282,7 @@ body {
 }
 
 .btn-white {
-  color: #e6005a;
+  color: #CC0000;
   background-color: white;
 
 }
@@ -432,7 +434,7 @@ canvas {
   padding: 0;
   width: 20%;
   background-color: #990c19;
-  color: white;
+  color: #E8E8E8;
   border-radius: 10px;
   text-align: center;
   padding: 10px 15px;
