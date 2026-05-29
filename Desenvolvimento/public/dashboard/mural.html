@@ -58,7 +58,7 @@
 
         <div class="dash-right">
 
-            <!-- TUDO QUE TINHA idAvisos eu mudei para "idDuvida -- Fiz o mesmo para descricao, que virou pergunta "-->
+            <!-- TUDO QUE TINHA idAvisos eu mudei para "idDuvida -- o mesmo vale para descricao, que virou pergunta "-->
             <div class="avisos">
                 <div id="alerta">
                 </div>
@@ -77,21 +77,18 @@
                                 Pergunta (máximo de 300 caracteres):
                                 <br>
                                 <textarea name="pergunta" id="textarea_pergunta" maxlength="300" rows="5"></textarea>
-                                <!--mudei de desc para pergunta-->
                             </label>
                             <br>
                             <br>
-                            <label><!-- novo Input Radio para pegar a Marca selecionada-->
+                            <label><!-- novo Input para pegar a Marca selecionada-->
                                 <label>
-                                    Selecione a marca que está com Dúvida:
+                                    Selecione a marca que você tem Dúvida:
                                     <br><br>
                                     <div class="div-radios">
-                                        <input type="radio" id="radio_porsche" name="marca_radio" value="porsche"
-                                            checked>
                                         <label for="radio_porsche">Porsche</label>
-
-                                        <input type="radio" id="radio_genesis" name="marca_radio" value="genesis" style="margin-left: 20px;"> <!--afastando um pouco-->
+                                        <input type="radio" id="radio_porsche" name="marca_radio" value="porsche">
                                         <label for="radio_genesis">Genesis</label>
+                                        <input type="radio" id="radio_genesis" name="marca_radio" value="genesis"> 
                                     </div>
                                 </label>
 
@@ -118,6 +115,7 @@
 
 <script>
     // já que a estrutura desse HTML foi feita para isso, não houve muitas mudanças
+    // maior parte das mudanças foi trocar Aviso para Duvida e adicionar nova Var para Porsche ou Genesis
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
@@ -135,7 +133,6 @@
             marca: temaSelecionado // adição do campo Tema ao mural de dúvidas
         }
 
-        // trocado de /avisos/publicar para /duvida/publicar
         fetch(`/duvida/publicar/${idUsuario}`, {
             method: "post",
             headers: {
@@ -175,7 +172,6 @@
 
     function deletar(idDuvida) {
         console.log("Criar função de apagar post escolhido - ID" + idDuvida);
-        // trocado de /avisos/deletar para /duvida/deletar/
         fetch(`/duvida/deletar/${idDuvida}`, {
             method: "DELETE",
             headers: {
@@ -197,7 +193,6 @@
     }
 
     function atualizarFeed() {
-        // trocado de /avisos/deletar para /duvida/deletar
         fetch("/duvida/listar").then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
@@ -221,7 +216,8 @@
                         var spanID = document.createElement("span");
                         var spanTitulo = document.createElement("span");
                         var spanNome = document.createElement("span");
-                        var divPergunta = document.createElement("div"); // mudei para pergunta
+                        var spanMarca = document.createElement("span")
+                        var divPergunta = document.createElement("div"); 
                         var divButtons = document.createElement("div");
                         var btnEditar = document.createElement("button");
                         var btnDeletar = document.createElement("button");
@@ -230,15 +226,17 @@
                         spanID.innerHTML = "ID: <b>" + publicacao.idDuvida + "</b>";
                         spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
                         spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
-                        divPergunta.innerHTML = "Pergunta: <b>" + publicacao.pergunta + "</b>"; // mudei para pergunta
+                        spanMarca.innerHTML = "Marca <b>" + publicacao.marca + "</b>"
+                        divPergunta.innerHTML = "Pergunta: <b>" + publicacao.pergunta + "</b>"; 
                         btnEditar.innerHTML = "Editar";
                         btnDeletar.innerHTML = "Deletar";
 
                         divPublicacao.className = "publicacao";
                         spanTitulo.id = "inputNumero" + publicacao.idDuvida;
                         spanNome.className = "publicacao-nome";
+                        spanMarca.className = "publicacao-Marca"
                         spanTitulo.className = "publicacao-titulo";
-                        divPergunta.className = "publicacao-pergunta"; // mudei para pergunta
+                        divPergunta.className = "publicacao-pergunta"; 
 
                         divButtons.className = "div-buttons"
 
@@ -253,6 +251,7 @@
                         divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);
                         divPublicacao.appendChild(spanTitulo);
+                        divPublicacao.appendChild(spanMarca); // Adicionado para vir o nome da marac junto
                         divPublicacao.appendChild(divPergunta);
                         divPublicacao.appendChild(divButtons);
                         divButtons.appendChild(btnEditar);

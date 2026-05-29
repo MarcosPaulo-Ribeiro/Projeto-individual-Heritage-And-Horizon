@@ -18,13 +18,14 @@ var app = express();
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var duvidaRouter = require("./src/routes/duvida"); // trocado de avisos para duvida
+var quizRouter = require("./src/routes/quiz");// aqui é a rota onde o meu Quiz pega
 
 // var medidasRouter = require("./src/routes/medidas"); Não é necessário, não há medidas
 // var aquariosRouter = require("./src/routes/aquarios"); não é necessário, não se trata de aquários mais
 // var empresasRouter = require("./src/routes/empresas"); não há empresas nesse projeto 
 
 
-var quizRouter = require("./src/routes/quiz");// aqui é a rota onde o meu Quiz pega
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -35,16 +36,27 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/duvida", duvidaRouter); // trocado de avisos para duvida
+app.use("/quiz", quizRouter); // encaminha para o Routes
+
 // app.use("/medidas", medidasRouter);
 // app.use("/aquarios", aquariosRouter);
 // app.use("/empresas", empresasRouter);
 
-app.use("/quiz", quizRouter); // encaminha para o Routes
+
 
 
 
 
 app.listen(PORTA_APP, function () {
+    console.log(`
+ #     # ####### ######  ### #######    #     #####  #######         #     # ####### ######  ### ####### ####### #     # 
+ #     # #       #     #  #     #      # #   #     # #               #     # #     # #     #  #       #  #     # ##    # 
+ #     # #       #     #  #     #     #   #  #       #               #     # #     # #     #  #      #   #     # # #   # 
+ ####### #####   ######   #     #    #     # #  #### #####    #####  ####### #     # ######   #     #    #     # #  #  # 
+ #     # #       #   #    #     #    ####### #     # #               #     # #     # #   #    #    #     #     # #   # # 
+ #     # #       #    #   #     #    #     # #     # #               #     # #     # #    #   #   #      #     # #    ## 
+ #     # ####### #     # ###    #    #     #  #####  #######         #     # ####### #     # ### ####### ####### #     # 
+`)
     console.log(`
     ##   ##  ######   #####             ####       ##     ######     ##              ##  ##    ####    ######  
     ##   ##  ##       ##  ##            ## ##     ####      ##      ####             ##  ##     ##         ##  
@@ -59,13 +71,5 @@ app.listen(PORTA_APP, function () {
     \tSe .:desenvolvimento:. você está se conectando ao banco local. \n
     \tSe .:producao:. você está se conectando ao banco remoto. \n\n
     \t\tPara alterar o ambiente, comente ou descomente as linhas 1 ou 2 no arquivo 'app.js'\n\n`);
-    console.log(`
- #     # ####### ######  ### #######    #     #####  #######         #     # ####### ######  ### ####### ####### #     # 
- #     # #       #     #  #     #      # #   #     # #               #     # #     # #     #  #       #  #     # ##    # 
- #     # #       #     #  #     #     #   #  #       #               #     # #     # #     #  #      #   #     # # #   # 
- ####### #####   ######   #     #    #     # #  #### #####    #####  ####### #     # ######   #     #    #     # #  #  # 
- #     # #       #   #    #     #    ####### #     # #               #     # #     # #   #    #    #     #     # #   # # 
- #     # #       #    #   #     #    #     # #     # #               #     # #     # #    #   #   #      #     # #    ## 
- #     # ####### #     # ###    #    #     #  #####  #######         #     # ####### #     # ### ####### ####### #     # 
-`)
+    
 });

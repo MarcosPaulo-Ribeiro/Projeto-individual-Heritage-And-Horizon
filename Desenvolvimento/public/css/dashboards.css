@@ -13,7 +13,7 @@ body {
   justify-content: center;
 }
 
-/* .dash-right .avisos {
+ .dash-right .avisos {
   width: 100%;
   color: rgb(216, 216, 216);
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -23,20 +23,26 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} 
 
 
 
 .dash-right .avisos .div-form input {
   width: 95%;
   border-radius: 5px;
+  border: 2px solid #ff0000;
 }
 
 .dash-right .avisos .div-form textarea {
   width: 95%;
-  border: 3px solid #e6005a;
+  border: 3px solid #ff0000;
   background-color: white;
   border-radius: 5px;
+}
+
+.dash-right .avisos .div-radios {
+  width: 100px;
+
 }
 
 .dash-right .avisos .div-form button {
@@ -48,9 +54,9 @@ body {
   font-size: 18px;
   padding: 10px 15px;
   color: white;
-  background-color: #e6005a;
+  background-color: #ff0000;
   width: 120px;
-} */
+} 
 
 .dash-right .avisos .container .div-form {
   width: 95%;
@@ -413,8 +419,8 @@ canvas {
 /*\ Quizz */
 
 :root {
-    --primary-brand-color: #ED145B;
-    --secondary-brand-color: #0762C8;
+    --primary-brand-color: #DAA520;
+    --secondary-brand-color: #CC0000;
     --success: #198754;
     --success-dark: #095c36;
     --success-light: #9dd3ba;
@@ -430,7 +436,8 @@ canvas {
 }
 
 .btninciar{
-  margin: 20%;
+  margin-top: 10%;
+  margin-left: 20%;
   padding: 0;
   width: 20%;
   background-color: #990c19;
@@ -438,7 +445,6 @@ canvas {
   border-radius: 10px;
   text-align: center;
   padding: 10px 15px;
-  margin-bottom: 100px;
   cursor: pointer;
 }
 
@@ -458,10 +464,12 @@ button {
 
 .border-primary {
     border: 3px solid var(--primary-brand-color);
+    margin: 50px;
 }
 
 .border-secondary {
     border: 3px solid var(--secondary-brand-color);
+    margin: 50px;
 }
 
 .padding-8 {
@@ -470,19 +478,24 @@ button {
 
 .text-bold {
     font-weight: bold;
+    color: white;
+}
+
+.option{
+  color: white;
 }
 
 .text-success-with-bg {
-    color: var(--success-dark);
+    /* color: var(--success-dark); */
     background-color: var(--success-light);
 }
 
 .text-warning-with-bg {
-    color: var(--warning-dark);
+    /* color: var(--warning-dark); */
     background-color: var(--warning-light);
 }
 
 .text-danger-with-bg {
-    color: var(--danger-dark);
+    /* color: var(--danger-dark); */
     background-color: var(--danger-light);
 }

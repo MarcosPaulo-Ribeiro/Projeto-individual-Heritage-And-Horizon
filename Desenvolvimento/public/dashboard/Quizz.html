@@ -10,7 +10,6 @@
 
 
     <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/estilo.css" />
 
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
@@ -59,8 +58,8 @@
         <div class="dash">
             <div id="pontuacaoEJogo">
                 <div id="container_selecao">
-                    <button class="btninciar"
-                        onclick="selecionarTema('porsche')">𝓟𝓸𝓻𝓼𝓬𝓱𝓮</button><!--botões para selecionar o tema de cada Marca-->
+                    <!--botões para selecionar o tema de cada Marca-->
+                    <button class="btninciar" onclick="selecionarTema('porsche')">𝓟𝓸𝓻𝓼𝓬𝓱𝓮</button>
                     <button class="btninciar" onclick="selecionarTema('genesis')">𝒢ℯ𝓃ℯ𝓈𝒾𝓈</button>
                 </div>
                 <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
@@ -489,10 +488,7 @@
         // btnConcluir.disabled = true
         btnTentarNovamente.disabled = false
 
-    }
-
-    function finalizarJogo() {
-        // VEM PRO BANCO DE DADOS DO PAPAI VEM
+        // VEM PRO BANCO DE DADOS
 
         // pegando o id do usuário atualmente logado
         const idUsuario = sessionStorage.ID_USUARIO;

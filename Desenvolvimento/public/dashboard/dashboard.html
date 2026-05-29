@@ -192,12 +192,13 @@
         }
 
         fetch(`/duvida/estatisticas`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
+            if (response.ok) { // só começa caso tenha sucesso em pegar os dados
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    plotarGrafico(resposta);
+                    plotarGrafico(resposta); 
+                    // dps de tudo, plota os graficos
 
                 });
             } else {
@@ -226,7 +227,7 @@
                         labels: labelsLeaderboard,
                         datasets: [{
                             data: dadosLeaderboard,
-                            backgroundColor: ranking.map((_, i) => i % 2 === 0 ? '#E60023' : '#DAA520'),
+                            backgroundColor: ranking.map((_, i) => i % 2 === 0 ? '#E60023' : '#DAA520'), // cor vermelha e amarela
                             borderRadius: 5
                         }]
                     },
@@ -250,6 +251,7 @@
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
 
     function plotarGrafico(resposta) {
+        // depois de ObterDadosGrafico chamar
 
         console.log('iniciando plotagem do gráfico...');
 
@@ -325,15 +327,15 @@
             kpiMedia.style.color = media >= 50 ? '#00C851' : '#E60023'; // vê se o valor é acima ou abaixo de 50% e muda a cor
         }
 
-        // GERANDO OS GRÁFICOS DIRETAMENTE COM AS VARIÁVEIS DO BANCO
+        // GRÁFICOS DE PIZZA // 
 
-        // Pizza - Porsche
+        //                     Porsche                          //
         new Chart(document.getElementById('chartQuizPorsche'), {
             type: 'pie',
             data: {
                 labels: ['Acertos', 'Erros'],
                 datasets: [{
-                    data: [acertosPorsche, errosPorsche], // Variáveis dinâmicas do BD
+                    data: [acertosPorsche, errosPorsche], // Dados do BD
                     backgroundColor: ['#E60023', '#404044'],
                     borderWidth: 0
                 }]
@@ -341,13 +343,13 @@
             options: { plugins: { legend: { display: false } } }
         });
 
-        // Pizza - Genesis
+        //                     Genesis                          //
         new Chart(document.getElementById('chartQuizGenesis'), {
             type: 'pie',
             data: {
                 labels: ['Acertos', 'Erros'],
                 datasets: [{
-                    data: [acertosGenesis, errosGenesis], // Variáveis dinâmicas do BD
+                    data: [acertosGenesis, errosGenesis], // Dados do BD
                     backgroundColor: ['#DAA520', '#404044'],
                     borderWidth: 0
                 }]
@@ -359,9 +361,9 @@
         new Chart(document.getElementById('chartLeaderboard'), {
             type: 'bar',
             data: {
-                labels: labelsLeaderboard, // Array preenchido dinamicamente pelo loop for
+                labels: labelsLeaderboard, // Array preenchido pelo loop for
                 datasets: [{
-                    data: dadosLeaderboard,   // Array preenchido dinamicamente pelo loop for
+                    data: dadosLeaderboard,   // Array preenchido pelo loop for
                     backgroundColor: '#E60023',
                     borderRadius: 5
                 }]
@@ -378,7 +380,7 @@
             }
         });
 
-        setTimeout(() => atualizarGrafico(dados, null), 6000); // atualização, porém meio inútil nesse projeto
+        setTimeout(() => atualizarGrafico(dados, null), 2000); // atualização, porém meio de fora nesse projeto
     }
 
 
@@ -397,7 +399,7 @@
         //    if (response.ok) {
         //        response.json().then(function (novoRegistro, idAquario) {
         fetch(`/duvida/estatisticas`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
+            if (response.ok) { // só começa caso tenha sucesso em pegar os dados 
                 response.json().then(function (novoRegistro) {
 
                     // obterdados();

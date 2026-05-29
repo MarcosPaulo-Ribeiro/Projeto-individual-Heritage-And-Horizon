@@ -25,7 +25,7 @@ function aguardar() {
 
 function finalizarAguardar(texto) {
     var divAguardar = document.getElementById("div_aguardar");
-    divAguardar.style.display = "none";
+    // divAguardar.style.display = "none"; essa linha estava sendo Muito incomôda
 
     var divErrosLogin = document.getElementById("div_erros_login");
     if (texto) {
