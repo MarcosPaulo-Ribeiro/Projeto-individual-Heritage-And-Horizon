@@ -37,7 +37,14 @@ Clone o repositório
 git clone https://github.com/MarcosPaulo-Ribeiro/Projeto-individual-Heritage-And-Horizon.git.
 ```
 
+na sua máquina Virtual projete os comandos dessa localização nos repositórios:
+``` bash
+"\Projeto-individual-Heritage-And-Horizon\Desenvolvimento\src\database\script-tabelas.sql"
+ou
+"\Projeto-individual-Heritage-And-Horizon\Desenvolvimento\Banco de Dados\Banco_Heritage_Horizon.sql"
+```
 No diretório raiz, instale as dependências:
+
 
 ``` Bash
 npm install
@@ -51,17 +58,48 @@ Para iniciar o servidor, utilize o comando:
 ``` Bash
 npm start
 ```
-O servidor estará disponível em: http://localhost:3333.
+O servidor estará disponível em: 
+http://localhost:3333 caso Desenvolvimento 
+ou 
+http://localhost:8080 caso Produção.
 
 ## 💫 Funcionalidades
 Fluxo de Autenticação: Cadastro e Login otimizados para o perfil do usuário.
 
 Quiz Interativo: Sistema de perguntas com captura de pontuação.
 
+Forúm de Dúvidas: Página para as pessoas publicarem suas dúvidas sobre as marcas focadas
+
 Dashboard Dinâmica: Os gráficos (Chart.js) não são estáticos; eles refletem o desempenho médio dos usuários, ranking de acertos e dúvida de usuários.
 
 ## 🔥✍ Histórico de Desenvolvimento
-Este projeto passou por uma fase de refatoração encima do código de monitoramento de aquários do repositório original Web-Data-Viz, resultando em um back-end mais leve e funcional para a temática de carros.
+Este projeto passou por uma fase de refatoração encima do código de monitoramento de aquários do repositório original Web-Data-Visualization, resultando em um back-end funcional para a temática de carros.
+
+ 
+## 🔥✍ Imagens do Projeto
+
+
+<img src = "Desenvolvimento\public\assets\imgs\Captura de tela 2026-05-29 131848.png">
+<img src = "Desenvolvimento\public\assets\imgs\Captura de tela 2026-05-29 131906.png">
+<img src = "Desenvolvimento/public/assets/imgs/Captura de tela 2026-05-29 132610.png">
+<img src = "Desenvolvimento\public\assets\imgs\Captura de tela 2026-05-29 132857.png">
+
+
 
 ## 👤© Autor
 Marcos Paulo - Estudante de CCO(1/8) na SPTech.
+
+## Bibliografia
+
+Modelos da Genesis - Site Oficial da Genesis https://www.genesis.com/worldwide/en/main.html<br>
+Foto do incidente com GV80 - Fox Bussiness https://www.foxbusiness.com/lifestyle/tiger-woods-crash-bad-news-good-genesis<br>
+Imagem da ODS 3 - Wikipedia https://pt.wikipedia.org/wiki/Objetivo_de_Desenvolvimento_Sustent%C3%A1vel_3<br>
+Imagem da ODS 13 - Wikipedia https://pt.wikipedia.org/wiki/Objetivo_de_Desenvolvimento_Sustent%C3%A1vel_13<br>
+imagens da Porsche - Site Oficial da Porsche https://www.porsche.com/brazil/pt/
+
+Banners de Index, Login e Cadastro<br>
+Photo by <a href="https://unsplash.com/@redcharlie?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">redcharlie</a> on <a href="https://unsplash.com/photos/black-car-in-grayscale-photography-vQVWIsIBafA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      
+Foto de <a href="https://unsplash.com/pt-br/@campful?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Campbell</a> na 
+<a href="https://unsplash.com/pt-br/fotografias/rodando-porsche-sedan-preto-3ZUsNJhi_Ik?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      

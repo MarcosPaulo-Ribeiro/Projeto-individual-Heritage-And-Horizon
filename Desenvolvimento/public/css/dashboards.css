@@ -6,6 +6,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
 }
 
 .label-captura {
@@ -486,16 +487,16 @@ button {
 }
 
 .text-success-with-bg {
-    /* color: var(--success-dark); */
+    color: var(--success-dark);
     background-color: var(--success-light);
 }
 
 .text-warning-with-bg {
-    /* color: var(--warning-dark); */
+    color: var(--warning-dark);
     background-color: var(--warning-light);
 }
 
 .text-danger-with-bg {
-    /* color: var(--danger-dark); */
+    color: var(--danger-dark);
     background-color: var(--danger-light);
 }
