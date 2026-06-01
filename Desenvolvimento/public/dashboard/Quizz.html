@@ -228,7 +228,7 @@
             alternativaB: "Hyundai",
             alternativaC: "Honda",
             alternativaD: "Chevrolet",
-            alternativaE: "Polestar",
+            alternativaE: "MINI",
             alternativaCorreta: "alternativaB"
         },
         {
@@ -257,7 +257,7 @@
             alternativaB: "G90",
             alternativaC: "GV60 Magma",
             alternativaD: "X Gran Berlinetta",
-            alternativaE: "Não tenho a mínima ideia, essa marca realmente existe?",
+            alternativaE: "Não tenho ideia, essa marca realmente existe?",
             alternativaCorreta: "alternativaB"
         },
         {
@@ -342,8 +342,7 @@
         document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
         document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
         document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
-        // mais uma alternativa para ficar 5 opções
-        document.getElementById("labelOpcaoCinco").innerHTML = questaoAtual.alternativaE;
+        document.getElementById("labelOpcaoCinco").innerHTML = questaoAtual.alternativaE; // mais uma alternativa para ficar 5 opções
     }
 
     function submeter() {
@@ -388,6 +387,7 @@
         if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
             // mudei aqui, após o término do Quiz, a página congelava, mudança feita logo após adicionar o Fetch
+            //  descobri que o erro não era esse, e eu não lembro como era antes
         } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
             alert("a próxima é a questão mais difícil!")// mudança na frase final
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)

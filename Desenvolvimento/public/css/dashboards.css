@@ -338,7 +338,8 @@ canvas {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  border-right: 3px solid #CC0000;
+  border-right: 3px solid #CC0000 !important;
+  border: 2px solid #DAA520;
   background-color: #212124;
 }
 
@@ -377,7 +378,7 @@ canvas {
 .btn-nav {
   width: 40%;
   color: white;
-  background-color: #CC4444;
+  background-color: #DAA520;
   border-radius: 5px;
   text-align: center;
   padding: 2% 5%;
@@ -385,8 +386,8 @@ canvas {
 
 .btn-nav-white {
   width: 40%;
-  background-color: #6b6b6b;
-  border: 3px solid #CC4444;
+  background-color: #095c36;
+  border: 3px solid #DAA520;
   border-radius: 5px;
   text-align: center;
   padding: 2% 5%;
@@ -410,6 +411,7 @@ canvas {
   width: 20%;
   background-color: #ffff;
   color: #ff0000;
+  border: 3px solid #DAA520;
   border-radius: 10px;
   text-align: center;
   padding: 10px 15px;

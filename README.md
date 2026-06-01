@@ -21,7 +21,7 @@ Horizon(Horizonte)simboliza a novidade Coreana, o início da Genesis forjada em 
 ### ![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white) ![VirtualBox](https://img.shields.io/badge/VirtualBox-183D61?style=for-the-badge&logo=virtualbox&logoColor=white)
 
 
-Hardware de Desenvolvimento: Acer Nitro(Windows).
+Hardware de Desenvolvimento: Acer Nitro V15(Windows 11).
 
 ## 🛠️ Configuração e Instalação
 Pré-requisitos
